@@ -1,2 +1,2 @@
 # discord_custom_bot_atom
-Atom bot
+Atom custom bot
