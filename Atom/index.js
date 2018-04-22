@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const robot = new Discord.Client();
 var prefix = '!'
-robot.login("NDM3NTY5NjA2NzE5MTExMTY4.Db3-IA.dEgelNdjGtpJm1wp2zvD3eiLS5A");
+robot.login("Token_Name");
 robot.on('message',(message) => {
 
     switch (message.content.toLowerCase()) {
