@@ -1,17 +1,18 @@
 const Discord = require('discord.js');
 const robot = new Discord.Client();
-var prefix = '!'
-robot.login("Token_Name");
+const config = require("./config.json");
+
 robot.on('message',(message) => {
 
     switch (message.content.toLowerCase()) {
-        case (prefix+'help'):
+        case (config.prefix+'help'):
             message.reply( 'Ознакомься с командами' );
-            message.channel.send( '!avatar - дает ссылку на скачку твоей авы' );
-            message.channel.send( '!roll - рандомное число от 0 до 100' );
-            message.channel.send( '!on - проигрывать музыку' );
-            message.channel.send( '!pause - пауза музыки(в разработке)' );
-            message.channel.send( '!resume - возобновить музыку(в разработке)' );
+            message.channel.send( config.prefix+'avatar - дает ссылку на скачку твоей авы');
+            message.channel.send( config.prefix+'roll - рандомное число от 0 до 100' );
+            message.channel.send( config.prefix+'on - проигрывать музыку ' );
+            message.channel.send( config.prefix+'off - минус музыка' );
+            message.channel.send( config.prefix+'pause - пауза музыки(в разработке)' );
+            message.channel.send( config.prefix+'resume - возобновить музыку(в разработке)' );
         break;
         case 'ку':
             message.channel.send( 'И тебе ку братишка' );
@@ -22,14 +23,14 @@ robot.on('message',(message) => {
         case 'саня':
             message.reply( 'все в порядке' );
         break;
-        case prefix+'avatar':
+        case config.prefix+'avatar':
             message.reply(message.author.avatarURL);
         break;
-        case prefix+'roll':
+        case config.prefix+'roll':
         message.reply
             message.reply( 'You rolled: '+ Math.round(Math.random() * (100 - 0) + 0));
         break;
-        case prefix+'on':
+        case config.prefix+'on':
 
             if (message.member.voiceChannel) {
              message.member.voiceChannel.join()
@@ -42,16 +43,23 @@ robot.on('message',(message) => {
             message.reply('Ты должен присоединиться к голосовому каналу!');
           }
         break;
-        case prefix+'pause':
+        case config.prefix+'off':
+            message.reply('Пока, mein Freund!');
+            message.member.voiceChannel.leave();
+
+        break;
+        case config.prefix+'pause':
         message.reply('В разработке');    
         break;
-        case prefix+'resume':
+        case config.prefix+'resume':
         
         message.reply('В разработке');   
           
         break;
     }
-})
+});
+
+robot.login(config.token);
 
 
 
